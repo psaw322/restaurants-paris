@@ -1,0 +1,226 @@
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  display: flex;
+  height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #f5f5f5;
+}
+
+/* ── PANNEAU GAUCHE ── */
+#panel {
+  width: 340px;
+  min-width: 340px;
+  height: 100vh;
+  background: #fff;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 2px 0 12px rgba(0,0,0,0.1);
+  z-index: 1000;
+  overflow: hidden;
+}
+
+#panel-header {
+  background: #1F4E79;
+  color: #fff;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+#panel-header h1 { font-size: 18px; font-weight: 700; }
+#compteur { font-size: 13px; opacity: 0.8; }
+
+.filtre-group {
+  padding: 10px 16px 6px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.filtre-group label {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 4px;
+}
+
+.filtre-group select {
+  width: 100%;
+  padding: 7px 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 13px;
+  background: #fafafa;
+  cursor: pointer;
+  outline: none;
+}
+
+.filtre-group select:focus { border-color: #1F4E79; }
+
+#btn-geo {
+  margin: 12px 16px;
+  padding: 10px;
+  width: calc(100% - 32px);
+  background: #1F4E79;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+#btn-geo:hover { background: #163a5f; }
+
+/* ── LISTE ── */
+#liste {
+  flex: 1;
+  overflow-y: auto;
+  padding: 8px 0;
+}
+
+.carte-resto {
+  padding: 12px 16px;
+  border-bottom: 1px solid #f0f0f0;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.carte-resto:hover { background: #f0f5fb; }
+
+.carte-resto-nom {
+  font-size: 14px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 3px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.carte-resto-meta {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.badge {
+  font-size: 11px;
+  padding: 2px 7px;
+  border-radius: 20px;
+  font-weight: 600;
+}
+.badge-note { background: #fff3cd; color: #856404; }
+.badge-cuisine { background: #e8f4fd; color: #1F4E79; }
+.badge-prix { background: #f0fff4; color: #276749; }
+.badge-dist { background: #fef3f2; color: #c0392b; }
+
+/* ── CARTE ── */
+#map {
+  flex: 1;
+  height: 100vh;
+  z-index: 1;
+}
+
+/* ── FICHE RESTAURANT ── */
+#fiche {
+  position: fixed;
+  bottom: 0;
+  left: 340px;
+  right: 0;
+  max-height: 45vh;
+  background: #fff;
+  border-radius: 20px 20px 0 0;
+  box-shadow: 0 -4px 24px rgba(0,0,0,0.15);
+  z-index: 2000;
+  overflow-y: auto;
+  padding: 20px 24px 24px;
+  transition: transform 0.3s ease;
+}
+
+#fiche.hidden { display: none; }
+
+#fiche-close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  background: #f0f0f0;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 16px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#fiche-content h2 { font-size: 20px; margin-bottom: 8px; color: #1a1a1a; }
+
+.fiche-notes {
+  display: flex;
+  gap: 12px;
+  margin: 10px 0;
+  flex-wrap: wrap;
+}
+
+.fiche-note {
+  background: #f8f9fa;
+  border-radius: 10px;
+  padding: 8px 14px;
+  text-align: center;
+}
+.fiche-note .val { font-size: 20px; font-weight: 700; color: #1F4E79; }
+.fiche-note .lab { font-size: 10px; color: #888; text-transform: uppercase; }
+
+.fiche-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin: 10px 0;
+  font-size: 14px;
+  color: #444;
+}
+.fiche-info span { display: flex; gap: 8px; }
+
+.fiche-btn {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 10px 20px;
+  background: #1F4E79;
+  color: #fff;
+  border-radius: 10px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 14px;
+}
+.fiche-btn:hover { background: #163a5f; }
+
+/* ── MOBILE ── */
+@media (max-width: 700px) {
+  body { flex-direction: column; }
+
+  #panel {
+    width: 100%;
+    min-width: unset;
+    height: auto;
+    max-height: 45vh;
+    flex-direction: column;
+  }
+
+  .filtre-group { display: inline-flex; flex-direction: column; width: 48%; padding: 8px; }
+
+  #panel > div:not(#panel-header):not(#liste) {
+    display: inline-flex;
+  }
+
+  #liste { max-height: 200px; }
+
+  #map { flex: 1; height: 55vh; }
+
+  #fiche { left: 0; max-height: 50vh; }
+}

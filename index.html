@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Restaurants Paris ⭐ 4.7+</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <!-- PANNEAU FILTRES -->
+  <div id="panel">
+    <div id="panel-header">
+      <h1>🍽️ Paris 4.7+</h1>
+      <span id="compteur">— restaurants</span>
+    </div>
+
+    <div class="filtre-group">
+      <label>📍 Trier par</label>
+      <select id="tri">
+        <option value="note">Note Google</option>
+        <option value="distance">Distance (ma position)</option>
+      </select>
+    </div>
+
+    <div class="filtre-group">
+      <label>🗺️ Arrondissement</label>
+      <select id="filtre-arr">
+        <option value="">Tous</option>
+      </select>
+    </div>
+
+    <div class="filtre-group">
+      <label>🍜 Cuisine</label>
+      <select id="filtre-cuisine">
+        <option value="">Toutes</option>
+      </select>
+    </div>
+
+    <div class="filtre-group">
+      <label>💶 Prix max</label>
+      <select id="filtre-prix">
+        <option value="">Tous</option>
+        <option value="20">Moins de 20 €</option>
+        <option value="30">Moins de 30 €</option>
+        <option value="50">Moins de 50 €</option>
+        <option value="80">Moins de 80 €</option>
+      </select>
+    </div>
+
+    <div class="filtre-group">
+      <label>⭐ Note minimum</label>
+      <select id="filtre-note">
+        <option value="4.7">4.7+</option>
+        <option value="4.8">4.8+</option>
+        <option value="4.9">4.9+</option>
+      </select>
+    </div>
+
+    <button id="btn-geo" onclick="geoLocaliser()">📍 Me géolocaliser</button>
+
+    <!-- LISTE DES RESTAURANTS -->
+    <div id="liste"></div>
+  </div>
+
+  <!-- CARTE -->
+  <div id="map"></div>
+
+  <!-- FICHE RESTAURANT -->
+  <div id="fiche" class="hidden">
+    <button id="fiche-close" onclick="fermerFiche()">✕</button>
+    <div id="fiche-content"></div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
